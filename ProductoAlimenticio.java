@@ -1,3 +1,7 @@
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
+
 /**
  * Representa un producto alimenticio, que es un tipo de Producto.
  * Añade la gestión de la fecha de caducidad.
@@ -30,20 +34,31 @@ public class ProductoAlimenticio extends Producto {
         return fechaCaducidad;
     }
 
-    /**
+/**
      * Establece la fecha de caducidad.
-     * Realiza una simulación de validación de fecha.
+     * Valida que la fecha tenga el formato "YYYY-MM-DD" y que no sea anterior
+     * a la fecha actual del sistema.
      *
      * @param fechaCaducidad La fecha en formato "YYYY-MM-DD".
-     * @throws InventarioException Si la fecha es "2024-01-01" (simulando caducidad).
+     * @throws InventarioException Si la fecha de caducidad es una fecha ya pasada.
+     * @throws IllegalArgumentException Si el formato de la fecha es inválido (diferente de "YYYY-MM-DD").
      */
     public void setFechaCaducidad(String fechaCaducidad) throws InventarioException {
-        // Simulación de validación de fecha pasada
-        if ("2024-01-01".equals(fechaCaducidad)) {
-            throw new InventarioException("El producto está caducado (Fecha simulada: 2024-01-01).");
-        }
         
-        // Aquí iría una validación de formato real (omitida por simplicidad)
+        LocalDate fechaCad;
+        LocalDate hoy = LocalDate.now();
+
+        try {
+            DateTimeFormatter formatter = DateTimeFormatter.ISO_LOCAL_DATE;
+            
+            fechaCad = LocalDate.parse(fechaCaducidad, formatter);
+
+        } catch (DateTimeParseException e) {
+            throw new IllegalArgumentException("Formato de fecha inválido. Se esperaba YYYY-MM-DD.", e);
+        }
+        if (fechaCad.isBefore(hoy)) {
+            throw new InventarioException("El producto está caducado. Fecha de caducidad: " + fechaCaducidad);
+        }
         
         this.fechaCaducidad = fechaCaducidad;
     }

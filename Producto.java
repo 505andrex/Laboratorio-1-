@@ -33,13 +33,19 @@ public abstract class Producto {
     // --- Getters ---
 
     /**
+     * Obtiene el contador total de productos instanciados.
+     * @return El número total de productos.
+     */
+    public static int getContadorProductos() {
+        return contadorProductos;
+    }
+    /**
      * Obtiene el código del producto.
      * @return El código.
      */
     public String getCodigo() {
         return codigo;
     }
-
     /**
      * Obtiene el nombre del producto.
      * @return El nombre.
@@ -47,7 +53,6 @@ public abstract class Producto {
     public String getNombre() {
         return nombre;
     }
-
     /**
      * Obtiene el precio del producto.
      * @return El precio.
@@ -56,27 +61,21 @@ public abstract class Producto {
         return precio;
     }
 
-    /**
-     * Obtiene el contador total de productos instanciados.
-     * @return El número total de productos.
-     */
-    public static int getContadorProductos() {
-        return contadorProductos;
-    }
+
 
     // --- Setters con Validación ---
 
     /**
-     * Establece el código del producto.
+     * Establece el precio del producto.
      *
-     * @param codigo El nuevo código.
-     * @throws IllegalArgumentException Si el código es nulo o vacío.
+     * @param precio El nuevo precio.
+     * @throws IllegalArgumentException Si el precio es negativo.
      */
-    public void setCodigo(String codigo) {
-        if (codigo == null || codigo.trim().isEmpty()) {
-            throw new IllegalArgumentException("El código es requerido.");
+    public void setPrecio(double precio) {
+        if (precio < 0) {
+            throw new IllegalArgumentException("El precio no puede ser negativo.");
         }
-        this.codigo = codigo;
+        this.precio = precio;
     }
 
     /**
@@ -93,18 +92,18 @@ public abstract class Producto {
     }
 
     /**
-     * Establece el precio del producto.
+     * Establece el código del producto.
      *
-     * @param precio El nuevo precio.
-     * @throws IllegalArgumentException Si el precio es negativo.
+     * @param codigo El nuevo código.
+     * @throws IllegalArgumentException Si el código es nulo o vacío.
      */
-    public void setPrecio(double precio) {
-        if (precio < 0) {
-            throw new IllegalArgumentException("El precio no puede ser negativo.");
+    public void setCodigo(String codigo) {
+        if (codigo == null || codigo.trim().isEmpty()) {
+            throw new IllegalArgumentException("El codigo es requerido.");
         }
-        this.precio = precio;
+        this.codigo = codigo;
     }
-
+    
     // --- Métodos de Información ---
 
     /**

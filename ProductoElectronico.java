@@ -20,6 +20,7 @@ public class ProductoElectronico extends Producto {
         this.setMesesGarantia(mesesGarantia); // Valida y asigna la garantía
     }
 
+     // --- Getter ---
     /**
      * Obtiene los meses de garantía.
      * @return Los meses de garantía.
@@ -28,6 +29,7 @@ public class ProductoElectronico extends Producto {
         return mesesGarantia;
     }
 
+    // --- Setters con Validación ---
     /**
      * Establece los meses de garantía.
      *
