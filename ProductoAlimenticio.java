@@ -16,14 +16,12 @@ public class ProductoAlimenticio extends Producto {
      * @param codigo El código único.
      * @param nombre El nombre.
      * @param precio El precio.
+     * @param stock El stock de productos
      * @param fechaCaducidad La fecha de caducidad (formato "YYYY-MM-DD").
-     * @throws IllegalArgumentException Si los datos base son inválidos.
-     * @throws InventarioException Si la fecha de caducidad es inválida (producto caducado).
      */
-    public ProductoAlimenticio(String codigo, String nombre, double precio, String fechaCaducidad)
-            throws InventarioException {
-        super(codigo, nombre, precio);
-        this.setFechaCaducidad(fechaCaducidad); // Valida y asigna la fecha
+    public ProductoAlimenticio(String codigo, String nombre, double precio, int stock, String fechaCaducidad){
+        super(codigo, nombre, precio, stock);
+        this.fechaCaducidad=fechaCaducidad;
     }
 
     /**

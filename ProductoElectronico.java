@@ -12,12 +12,13 @@ public class ProductoElectronico extends Producto {
      * @param codigo El código único.
      * @param nombre El nombre.
      * @param precio El precio.
+     * @param stock El stock - parte del laboratorio 2
      * @param mesesGarantia Los meses de garantía (no puede ser negativo).
      * @throws IllegalArgumentException Si los datos base o los meses de garantía son inválidos.
      */
-    public ProductoElectronico(String codigo, String nombre, double precio, int mesesGarantia) {
-        super(codigo, nombre, precio); // Llama al constructor del padre
-        this.setMesesGarantia(mesesGarantia); // Valida y asigna la garantía
+    public ProductoElectronico(String codigo, String nombre, double precio, int stock, int mesesGarantia){
+        super(codigo, nombre, precio, stock);
+        this.mesesGarantia=mesesGarantia;
     }
 
      // --- Getter ---
